@@ -51,15 +51,16 @@ MQTT::Client.connect('localhost') do |c|
     begin
       parsed_message = JSON.parse(message, symbolize_names: true)
 
-      puts "Processing: #{parsed_message}"
-
       case parsed_message[:type]
       when "Message::ServiceDirectory::Ping"
-        puts "Publishing reply to #{parsed_message[:reply_queue]}"
         c.publish(parsed_message[:reply_queue], Message::ServiceDirectory::Pong.new( original_message_id: parsed_message[:message_id], node_type: 'ConfigurationMananger', node_id: Process.pid).to_json )
       when "Message::ServiceDirectory::Query"
-        puts "Publishing reply to #{parsed_message[:reply_queue]}"
-        c.publish(parsed_message[:reply_queue], "NOT IMPLEMENTED YET")
+        # Lookup requested configuration
+        configurations[ parsed_message[:payload].downcase ] ||= YAML.load_file("config_files/#{parsed_message[:payload].downcase}.yml")
+
+        if configurations[ parsed_message[:payload].downcase ]
+          c.publish(parsed_message[:reply_queue], Message::Reply.new( original_message_id: parsed_message[:message_id], node_type: 'ConfigurationMananger', node_id: Process.pid, payload: configurations[ parsed_message[:payload].downcase ].to_json ).to_json )
+        end
       else
         puts "Ignoring unsupported message"
       end
@@ -70,6 +71,3 @@ MQTT::Client.connect('localhost') do |c|
     end
   end
 end
-
-
-# "{\"type\": \"Message::ServiceDirectory::Ping", \"message_id\":10298131,\"reply_queue\":\"testing\"}"
