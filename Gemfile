@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'mqtt'
-gem 'virtus'
+gem 'kuebiko', git: 'git@gitlab.com:kuebiko/ruby-kuebiko.git', branch: :master

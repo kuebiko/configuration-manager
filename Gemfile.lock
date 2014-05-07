@@ -1,3 +1,12 @@
+GIT
+  remote: git@gitlab.com:kuebiko/ruby-kuebiko.git
+  revision: 40ae50c93c7e9fbfb638af9fd439eb1770d945b8
+  branch: master
+  specs:
+    kuebiko (0.0.1)
+      hashie (~> 2.1)
+      virtus (~> 1.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -10,6 +19,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     equalizer (0.0.9)
+    hashie (2.1.1)
     ice_nine (0.11.0)
     mqtt (0.2.0)
     thread_safe (0.3.3)
@@ -23,5 +33,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  kuebiko!
   mqtt
-  virtus
