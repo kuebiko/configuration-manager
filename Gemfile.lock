@@ -1,10 +1,12 @@
 GIT
   remote: git@gitlab.com:kuebiko/ruby-kuebiko.git
-  revision: 40ae50c93c7e9fbfb638af9fd439eb1770d945b8
+  revision: ac590d73e7b103502c7aeaf8f8f55cbb8ba8dd27
   branch: master
   specs:
     kuebiko (0.0.1)
+      celluloid
       hashie (~> 2.1)
+      mosquitto
       virtus (~> 1.0.2)
 
 GEM
@@ -14,15 +16,19 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     equalizer (0.0.9)
-    hashie (2.1.1)
+    hashie (2.1.2)
     ice_nine (0.11.0)
+    mosquitto (0.3)
     mqtt (0.2.0)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
+    timers (1.1.0)
     virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
